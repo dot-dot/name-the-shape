@@ -1,4 +1,4 @@
 name-the-shape
 ==============
 
-Identifying the type/shape of polygons
+Identifying type/shape of polygons
