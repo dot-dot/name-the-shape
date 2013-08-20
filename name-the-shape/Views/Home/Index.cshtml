@@ -1,0 +1,74 @@
+﻿<div id="body">
+    
+    <section class="content-wrapper main-content clear-fix">
+        <h3>Testing Quadrilateral Type:</h3>
+        <ol>
+            <li class="one">
+                Enter test values in json format
+            </li>
+
+            <li class="two">
+                Click the "Get Type" button
+            </li>
+           
+        </ol>
+        
+         <div class="clear-fix">
+            Coordinates in json format: <input type="text" value="" id="test"/>
+        </div>    
+        <button class="btn getType">Get Type</button>
+        <div class="result main-content label"></div>
+    </section>       
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+            
+    <script>
+        var points = [
+                {
+                    X: 1,
+                    Y: 1
+                },
+                {
+                    X: 2,
+                    Y: 1
+                },
+                {
+                    X: 2,
+                    Y: 2
+                },
+                {
+                    X: 1,
+                    Y: 2
+                }
+            ];
+
+        $('#test').val(JSON.stringify(points));
+        
+        
+
+        $('.getType').click(function (e) {
+            e.preventDefault();
+            
+
+            jQuery.ajax({
+                url: '/Api/Quadrilateral/',
+                type: 'POST',
+                data: $('#test').val(),
+                dataType: 'json',
+                contentType: "application/json",
+                success: function (data) {
+                    $('.result').html(data);
+                },
+                statusCode: {
+                    404: function () {
+                        alert('Failed');
+                    }
+                }
+            });
+            
+        });
+        
+
+    </script>
+
